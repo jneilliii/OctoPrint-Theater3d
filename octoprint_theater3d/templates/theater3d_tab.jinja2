@@ -1,0 +1,170 @@
+<div style="padding:20px;">
+    <h1 align="center">3D Theater</h1>
+    
+    <table align="center">
+        <tr>
+        	<td width=50px align="center"></td>
+            <td width=50px align="center"><button class="btn tilt-up" data-bind="click:tilt_camera_u">Tilt Up</button></td>
+	    <td width=50px></td>
+		</tr>
+		<tr>
+	    <!-- <input type="text" class="input-xxlarge"> -->
+	    <!-- <button class="btn btn-prim">{{ _('Go') }}</button> -->
+	    	<td width=50px align="center"><button class="btn pan-left" data-bind="click:pan_camera_l">Pan Left</button></td>
+	    	<td width=50px align="center"></td>
+		    <td width=50px align="center"><button class="btn pan-right" data-bind="click:pan_camera_r">Pan Right</button></td>
+        </tr>
+		<tr>
+		    <td width=50px align="center"></td>
+	    	<td width=50px align="center"><button class="btn tilt-down" data-bind="click:tilt_camera_d">Tilt Down</button></td>
+		    <td width=50px></td>
+		</tr>
+        </tr>
+        <tr height=50px>
+        <tr>
+            <td width=100px align="center">
+            <button class="btn_swap_rotation" data-bind="click:swap_rotation">CW-to-CCW</button>
+            </td>
+            <td width=100px align="center">                
+                <button class="btn_swap_servos" data-bind="click:swap_servos">Swap Servos</button>
+            </td>
+            <td width=100px align="center">
+            <button class="btn_reset_servos" data-bind="click:reset_servos">Reset Servos</button>
+                </td>
+        </tr>
+    </table>	
+    <hr>
+    <div class="cam_view">
+        <img height=600px id="webcam_image" src="/webcam/?action=stream&amp;1578205011186">
+    	
+        </img>
+    </div>
+</div>
+
+<script name="myjs" type="text/javascript">
+{% block jquery %}
+
+        tilt_camera_u = function (){
+            console.log("running");
+            var request = {
+                "direction": "U"
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "plugin/theater3d/tilt_fxn",
+                data: request,
+                success: function(data){
+                    console.log("success")
+                }
+            });
+
+        };
+
+        tilt_camera_d = function (){
+            console.log("running");
+            var request = {
+                "direction": "D"
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "plugin/theater3d/tilt_fxn",
+                data: request,
+                success: function(data){
+                    console.log("success")
+                }
+            });
+
+        };
+	pan_camera_l = function (){
+            console.log("running");
+            var request = {
+                "direction": "L"
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "plugin/theater3d/pan_fxn",
+                data: request,
+                success: function(data){
+                    console.log("success")
+                }
+            });
+
+        };
+
+	pan_camera_r = function (){
+            console.log("running");
+            var request = {
+                "direction": "R"
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "plugin/theater3d/pan_fxn",
+                data: request,
+                success: function(data){
+                    console.log("success")
+                }
+            });
+
+        };
+
+        swap_servos = function (){
+            console.log("running");
+            var request = {
+                "opt": "servos"
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "plugin/theater3d/swap_fxn",
+                data: request,
+                success: function(data){
+                    console.log("success")
+                }
+            });
+
+        };
+
+        swap_rotation = function (){
+            console.log("running");
+            var request = {
+                "opt": "dir_b"
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "plugin/theater3d/swap_fxn",
+                data: request,
+                success: function(data){
+                    console.log("success")
+                }
+            });
+
+        };
+
+    reset_servos = function (){
+        console.log("running");
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "plugin/theater3d/reset_fxn",
+            success: function(data){
+                console.log("success")
+            }
+        });
+
+    };
+
+{% endblock %}
+</script>
+

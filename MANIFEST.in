@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_theater3d/templates *
+recursive-include octoprint_theater3d/translations *
+recursive-include octoprint_theater3d/static *
