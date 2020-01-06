@@ -70,6 +70,7 @@ class PanTilt_Ctrlr:
 
 	# If the commands you provide seem to be controlling the incorrect servo, you can run the method below to swap them
 	def swap_ServoAssignments(self):
+		self.stop_ServoSession()
 		# The servo swap cannot occur it there are no initial servo assignments 
 		if (self.pan_servo != None):
 			self.pan_servo = GPIO.PWM(self.tlt_pin, 50)     
@@ -135,7 +136,8 @@ class PanTilt_Ctrlr:
 
 	def reset_Servos(self):
 		self.stop_ServoSession()
-		self.AssignServos()
+		GPIO.setmode(GPIO.BOARD)
+		self.assignServos()
 
 	def __init__(self):
 		self.assignServos()
