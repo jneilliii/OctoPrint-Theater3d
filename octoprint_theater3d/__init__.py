@@ -102,6 +102,15 @@ class Theater3dPlugin(octoprint.plugin.StartupPlugin,
 	def reset_fxn(self):
 		self.pt_ctrlr.reset_Servos()
 		return jsonify(success=True)
+
+	@octoprint.plugin.BlueprintPlugin.route("/lights_fxn", methods=["GET"])
+	def lights_fxn(self):
+		state = request["set"]
+		if state == "ON":
+			self.pt_ctrlr.lights_on()
+		else:
+			self.pt_ctrlr.lights_off()
+		return jsonify(success=True)
 	##~~ Softwareupdate hook
 
 	def get_update_information(self):

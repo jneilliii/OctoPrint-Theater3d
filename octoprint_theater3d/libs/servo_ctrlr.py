@@ -35,6 +35,7 @@ except Exception:
 class PanTilt_Ctrlr:
 	pan_pin = 32			# Use this variable to assign the pan servo's signal (pwm) pin
 	tlt_pin = 33			# Use this variable to assign the pan servo's signal (pwm) pin
+	led_pin = 29			# Use this variable to assign the pan/tilt led digital pin
 	dutyCycle_stop = 0	# Default Duty Cycle value to stop the servo movement is 0
 	delay_time = 0.025	# Default servo turn delay value is 50 milliseconds
 	pan_servo = None	# This variable will be used as a placeholder for the pan servo object
@@ -49,6 +50,7 @@ class PanTilt_Ctrlr:
 		# If the pan or tilt signal pins are not assigned, the servo's cannot be assigned
 		if (self.pan_pin != 0):
 			try:
+				GPIO.setup(self.led_pin,GPIO.OUT, initial=0) # Sets LED signal pin assignment [parameter must be set]
 				GPIO.setup(self.pan_pin,GPIO.OUT)  # Sets Pan-Servo signal pin assignment [parameter must be set]
 				self.pan_servo = GPIO.PWM(self.pan_pin, 50)     # Sets Pan-Servo signal pin as a PWM pin
 				self.pan_servo.start(0)               # Starts running PWM on the Pan-Servo signal pin and sets it to 0
@@ -58,6 +60,7 @@ class PanTilt_Ctrlr:
 			except Exception:
 				self.stop_ServoSession()
 				GPIO.setmode(GPIO.BOARD)		# This sets the pin references for the PI to the numbered mode
+				GPIO.setup(self.led_pin,GPIO.OUT, initial=0) # Sets LED signal pin assignment [parameter must be set]
 				GPIO.setup(self.pan_pin,GPIO.OUT)  # Sets Pan-Servo signal pin assignment [parameter must be set]
 				self.pan_servo = GPIO.PWM(self.pan_pin, 50)     # Sets Pan-Servo signal pin as a PWM pin
 				self.pan_servo.start(0)               # Starts running PWM on the Pan-Servo signal pin and sets it to 0
@@ -124,6 +127,12 @@ class PanTilt_Ctrlr:
 		self.tlt_servo.ChangeDutyCycle(self.tlt_cw_val)
 		sleep(self.delay_time)
 		self.tlt_servo.ChangeDutyCycle(0)
+
+	def lights_on(self):
+		GPIO.setup(self.led_pin,1)
+
+	def lights_off(self):
+		GPIO.setup(self.led_pin,1)
 
 	# Kills the servo control to release the PWM control and pin configuration
 	def stop_ServoSession(self):
