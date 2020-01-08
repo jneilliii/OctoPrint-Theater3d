@@ -3,7 +3,7 @@
     <h1 align="center">Theater 3D</h1>
     <table align="center">
         <tr>
-            <td width=50px align="center"><button id="led_btn" class="btn lights" value="1"><a onclick="lights()">OFF</a></button></td>
+            <td width=50px align="center"><button id="led_btn" class="btn lights" value="1"><a onclick="lights()">TOGGLE</a></button></td>
             <td width=50px align="center"><button class="btn tilt-up"><a onclick="tilt_camera_u()">Tilt Up</a></button></td>
             <td width=50px></td>
                 </tr>
@@ -160,13 +160,13 @@
                 var request = {
                     "set": "ON"
                 };
-                $("#led_btn").val("ON")
+                //$("#led_btn").val("ON")
             }
             else{
                 var request = {
                     "set": "OFF"
                 };
-                $("#led_btn").val("OFF")
+                //$("#led_btn").val("OFF")
             }      
             $.ajax({
                 type: "GET",
