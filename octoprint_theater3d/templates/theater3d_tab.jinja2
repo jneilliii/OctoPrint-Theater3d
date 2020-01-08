@@ -156,19 +156,17 @@
         function lights(){
             console.log("toggling lights");
             var val = $("#led_btn").val();
-            console.log(val)
-            var new_val = "";
             if (val == "1"){
                 var request = {
                     "set": "ON"
                 };
-                new_val = "1";
+                $("#led_btn").val("ON")
             }
             else{
                 var request = {
                     "set": "OFF"
                 };
-                new_val = "0";
+                $("#led_btn").val("OFF")
             }      
             $.ajax({
                 type: "GET",
@@ -177,7 +175,6 @@
                 data: request,
                 success: function(data){
                     console.log("success")
-                    $("#led_btn").val("ON")
                 }
             });
 
