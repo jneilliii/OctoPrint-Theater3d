@@ -129,10 +129,10 @@ class PanTilt_Ctrlr:
 		self.tlt_servo.ChangeDutyCycle(0)
 
 	def lights_on(self):
-		GPIO.setup(self.led_pin,1)
+		GPIO.output(self.led_pin,1)
 
 	def lights_off(self):
-		GPIO.setup(self.led_pin,1)
+		GPIO.output(self.led_pin,0)
 
 	# Kills the servo control to release the PWM control and pin configuration
 	def stop_ServoSession(self):

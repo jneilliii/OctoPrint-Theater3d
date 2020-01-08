@@ -105,7 +105,7 @@ class Theater3dPlugin(octoprint.plugin.StartupPlugin,
 
 	@octoprint.plugin.BlueprintPlugin.route("/lights_fxn", methods=["GET"])
 	def lights_fxn(self):
-		state = request["set"]
+		state = request.values["set"]
 		if state == "ON":
 			self.pt_ctrlr.lights_on()
 		else:
