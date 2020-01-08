@@ -156,6 +156,7 @@
         function lights(){
             console.log("toggling lights");
             var val = $("#led_btn").val();
+            console.log(val)
             var new_val = "";
             if (val == "1"){
                 var request = {
@@ -176,7 +177,7 @@
                 data: request,
                 success: function(data){
                     console.log("success")
-                    $("#led_btn").val(new_val)
+                    $("#led_btn").val("ON")
                 }
             });
 
