@@ -6,7 +6,7 @@ Creation Date : December 23, 2019
 The Servo Controller module was created with the intention to be used
 in conjuction with octoprint. Due to the low power nature of the Raspberry Pi, 
 servos are a good solution to use for different controls related to the 
-3d printer. This code is compatible w/ python 2.7 through python 3.7, and 
+3d printer. This code is compatible w/ python 3.x versions, and 
 utilizes the RPi library for Pi GPIO control to send PWM (Pulse Width Modulation)
 signals to the respective servos.  
 
