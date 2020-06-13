@@ -12,10 +12,8 @@ from __future__ import absolute_import
 import octoprint.plugin
 
 import sys, os
-cd = os.getcwd()
-sys.path.append(cd)
 
-from .libs.servo_ctrlr import PanTilt_Ctrlr
+from libs.servo_ctrlr import PanTilt_Ctrlr
 import octoprint.plugin
 from octoprint.events import eventManager, Events
 from flask import jsonify, request, make_response, Response
@@ -30,8 +28,6 @@ import json
 
 
 class Theater3dPlugin(octoprint.plugin.StartupPlugin,
-                      octoprint.plugin.SettingsPlugin,
-                      octoprint.plugin.AssetPlugin,
                       octoprint.plugin.TemplatePlugin,
                       octoprint.plugin.BlueprintPlugin, 
                       octoprint.plugin.EventHandlerPlugin):
@@ -90,12 +86,12 @@ class Theater3dPlugin(octoprint.plugin.StartupPlugin,
 		elif (opt == "dir_b"):
 			self.pt_ctrlr.swap_pan_rotations()
 			self.pt_ctrlr.swap_tlt_rotations()
-                elif (opt == "dir_p"):
-                        self.pt_ctrlr.swap_pan_rotations()
-                elif (opt == "dir_t"):
-                        self.pt_ctrlr.swap_tlt_rotations()
-                elif (opt == "all"):
-                        self.pt_ctrlr.swap_all()
+		elif (opt == "dir_p"):
+			self.pt_ctrlr.swap_pan_rotations()
+		elif (opt == "dir_t"):
+			self.pt_ctrlr.swap_tlt_rotations()
+		elif (opt == "all"):
+			self.pt_ctrlr.swap_all()
 		return jsonify(success=True)
 
 	@octoprint.plugin.BlueprintPlugin.route("/reset_fxn", methods=["GET"])

@@ -18,10 +18,6 @@ The code is written such that the pins must be assigned by the user.
 
 from time import sleep
 import sys, os
-cd = os.getcwd()
-paths=[cd+'/static/python','/usr/lib/python2.7', '/usr/lib/python2.7/plat-arm-linux-gnueabihf', '/usr/lib/python2.7/lib-tk', '/usr/lib/python2.7/lib-old', '/usr/lib/python2.7/lib-dynload', '/home/pi/.local/lib/python2.7/site-packages', '/usr/local/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages']
-for path in paths:
-       sys.path.append(path)
 import RPi.GPIO as GPIO
 
 
@@ -40,8 +36,8 @@ class PanTilt_Ctrlr:
 	delay_time = 0.025	# Default servo turn delay value is 50 milliseconds
 	pan_servo = None	# This variable will be used as a placeholder for the pan servo object
 	tlt_servo = None	# This variable will be used as a placeholder for the tilt servo object
-        pan_ccw_val = 12
-        pan_cw_val = 3
+	pan_ccw_val = 12
+	pan_cw_val = 3
 	tlt_ccw_val = 12
 	tlt_cw_val = 3
 
@@ -99,13 +95,13 @@ class PanTilt_Ctrlr:
                         self.tlt_ccw_val = 12
                         self.tlt_cw_val = 3
 
-        def swap_rotations(self):
+	def swap_rotations(self):
 		self.swap_pan_rotations()
 		self.swap_tlt_rotations
 
 	def swap_all(self):
-                self.swap_pan_rotations()
-                self.swap_tlt_rotations
+		self.swap_pan_rotations()
+		self.swap_tlt_rotations()
 		self.swap_ServoAssignments()
 
 	def pan_left(self):
